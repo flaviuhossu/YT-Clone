@@ -9,6 +9,8 @@ import {
 const Comments = ({ videoId, totalComments }) => {
   const dispatch = useDispatch()
 
+  const { photoURL } = useSelector((state) => state.auth?.user)
+
   useEffect(() => {
     dispatch(getCommentsOFVideoById(videoId))
   }, [videoId, dispatch])
@@ -30,11 +32,7 @@ const Comments = ({ videoId, totalComments }) => {
     <div className='comments'>
       <p>{totalComments}</p>
       <div className='comments__form d-flex w-100 my-2'>
-        <img
-          src='https://image.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg'
-          alt=''
-          className='rounded-circle mr-3'
-        />
+        <img src={photoURL} alt='' className='rounded-circle mr-3' />
         <form action='' className='d-flex flex-grow-1' onSubmit={handleComment}>
           <input
             type='text'

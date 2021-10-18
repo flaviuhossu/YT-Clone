@@ -20,6 +20,8 @@
     border: 1.5px solid $text-color;
     border-radius: 999px;
 
+    cursor: pointer;
+
     &:hover {
       background-color: #374a59;
     }

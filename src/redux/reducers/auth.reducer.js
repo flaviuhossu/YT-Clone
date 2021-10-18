@@ -13,7 +13,7 @@ const initialState = {
   user: sessionStorage.getItem('ytc-user')
     ? JSON.parse(sessionStorage.getItem('ytc-user'))
     : null,
-  login: false,
+  loading: false,
 }
 
 export const authReducer = (prevState = initialState, action) => {

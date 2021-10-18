@@ -5,6 +5,7 @@ import { FaBars } from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { MdNotifications, MdApps } from 'react-icons/md'
 import { useHistory } from 'react-router'
+import { useSelector } from 'react-redux'
 
 const Header = ({ handleToggleSidebar }) => {
   const [input, setInput] = useState()
@@ -13,6 +14,7 @@ const Header = ({ handleToggleSidebar }) => {
     e.preventDefault()
     history.push(`/search/${input}`)
   }
+  const { photoURL } = useSelector((state) => state.auth?.user)
 
   return (
     <div className='header'>
@@ -40,10 +42,7 @@ const Header = ({ handleToggleSidebar }) => {
       <div className='header__icons'>
         <MdNotifications size={28} />
         <MdApps size={28} />
-        <img
-          src='https://image.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg'
-          alt='avatar'
-        />
+        <img src={photoURL} alt='avatar' />
       </div>
     </div>
   )

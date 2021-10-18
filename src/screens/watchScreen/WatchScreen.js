@@ -11,7 +11,9 @@ import {
   getRelatedVideos,
   getVideoById,
 } from '../../redux/actions/videos.actions'
+import { Helmet } from 'react-helmet'
 import './_watchScreen.scss'
+
 const WatchScreen = () => {
   let { id } = useParams()
 
@@ -30,6 +32,9 @@ const WatchScreen = () => {
 
   return (
     <Row>
+      <Helmet>
+        <title>{video?.snippet?.title}</title>
+      </Helmet>
       <Col lg={8}>
         <div className='watchscreen__player'>
           <iframe
