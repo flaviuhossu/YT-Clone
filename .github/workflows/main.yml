@@ -28,7 +28,7 @@ jobs:
           CI: false
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@v2.0.0
         with:
           args: deploy --only hosting
         env:
