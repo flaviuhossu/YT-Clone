@@ -12,7 +12,7 @@ import numeral from 'numeral'
 import { useHistory } from 'react-router'
 
 const Video = ({ video, channelScreen }) => {
-  // Destructuring
+  // Destructuring props
   const {
     id,
     snippet: {
@@ -26,7 +26,6 @@ const Video = ({ video, channelScreen }) => {
   } = video
 
   //For the duration we need to use useEffect. Response data is not consistent
-
   const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
   const [channelIcon, setChannelIcon] = useState(null)
@@ -36,6 +35,7 @@ const Video = ({ video, channelScreen }) => {
 
   // When searching by category, the ID from data is now an object because of bad API
   const _videoId = id?.videoId || contentDetails?.videoId || id
+
   // Video details
   useEffect(() => {
     const get_video_details = async () => {
@@ -51,9 +51,10 @@ const Video = ({ video, channelScreen }) => {
       setViews(items[0].statistics.viewCount)
     }
     get_video_details()
+    return () => {}
   }, [_videoId])
 
-  // Channel ICON
+  // Channel Icon. Because you don't get it from the useEffect above meh
   useEffect(() => {
     const get_channel_icon = async () => {
       const {
@@ -73,7 +74,7 @@ const Video = ({ video, channelScreen }) => {
 
   const handleVideoClick = () => {
     history.push(`/watch/${_videoId}`)
-    console.log(_videoId)
+    console.log(_videoId, 'FLAVIU')
   }
   return (
     <div className='video' onClick={handleVideoClick}>

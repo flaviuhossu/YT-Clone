@@ -16,6 +16,7 @@ export const login = () => async (dispatch) => {
 
     const provider = new firebase.auth.GoogleAuthProvider()
 
+    // See, edit, and permanently delete your YouTube videos, ratings, comments and captions
     provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl')
 
     const res = await auth.signInWithPopup(provider)
@@ -26,7 +27,7 @@ export const login = () => async (dispatch) => {
       name: res.additionalUserInfo.profile.name,
       photoURL: res.additionalUserInfo.profile.picture,
     }
-
+    //↓ To avoid losing the auth info, we need to use session storage
     sessionStorage.setItem('ytc-access-token', accessToken)
     sessionStorage.setItem('ytc-user', JSON.stringify(profile))
 

@@ -11,7 +11,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css'
 reactDom.render(
   <Provider store={store}>
     <Router>
-      <App></App>
+      <App />
     </Router>
   </Provider>,
   document.getElementById('root')

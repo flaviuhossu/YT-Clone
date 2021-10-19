@@ -23,6 +23,7 @@ const HomeScreen = () => {
     (state) => state.homeVideos
   )
 
+  // ↓Used for Infinite scroll prop
   const fetchData = () => {
     if (activeCategory === 'All') dispatch(getPopularVideos())
     else dispatch(getVideosByCategory(activeCategory))
@@ -36,7 +37,7 @@ const HomeScreen = () => {
         next={fetchData}
         hasMore={true}
         loader={
-          <div className='spinner-border text-danger d-block mx-auto'></div>
+          <div className='spinner-border text-danger d-block mx-auto'></div> //from bootstrap
         }
         className='row'
       >

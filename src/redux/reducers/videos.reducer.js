@@ -35,9 +35,11 @@ export const homeVideosReducer = (
       return {
         ...state,
         videos:
+          // if the active category is the same as the videos, just concatenate the next 20 videos
           state.activeCategory === payload.category
             ? [...state.videos, ...payload.videos]
-            : payload.videos,
+            : // else, completely change the videos array with the payload (another active category)
+              payload.videos,
         loading: false,
         nextPageToken: payload.nextPageToken,
         activeCategory: payload.category,

@@ -18,9 +18,10 @@ import {
   SUBSCRIPTION_CHANNEL_REQUEST,
   SUBSCRIPTION_CHANNEL_SUCCESS,
 } from '../actionType'
-
+//↓AXIOS
 import request from '../../api'
-// ////MOST POPULAR VIDEOS
+
+/////MOST POPULAR VIDEOS
 export const getPopularVideos = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -53,7 +54,7 @@ export const getPopularVideos = () => async (dispatch, getState) => {
     console.log(error.message)
   }
 }
-// ////////GET VIDEOS BY CATEGORY
+//////////GET VIDEOS BY CATEGORY
 export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -120,7 +121,6 @@ export const getRelatedVideos = (id) => async (dispatch) => {
     const { data } = await request('/search', {
       params: {
         part: 'snippet',
-        id: id,
         relatedToVideoId: id,
         maxResults: 15,
         type: 'video',
@@ -128,10 +128,10 @@ export const getRelatedVideos = (id) => async (dispatch) => {
     })
     dispatch({
       type: RELATED_VIDEOS_SUCCESS,
-      payload: data.items[0],
+      payload: data.items,
     })
   } catch (error) {
-    console.log(error.response.data.message) //comming from Axios
+    console.log(error.response.data.message)
     dispatch({
       type: RELATED_VIDEOS_FAIL,
       payload: error.response.data.message,

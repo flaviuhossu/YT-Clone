@@ -15,12 +15,13 @@ import { Helmet } from 'react-helmet'
 import './_watchScreen.scss'
 
 const WatchScreen = () => {
-  let { id } = useParams()
+  const { id } = useParams()
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getVideoById(id))
+
     dispatch(getRelatedVideos(id))
   }, [dispatch, id])
 
@@ -36,15 +37,14 @@ const WatchScreen = () => {
         <title>{video?.snippet?.title}</title>
       </Helmet>
       <Col lg={8}>
-        <div className='watchscreen__player'>
+        <div className='watchScreen__player'>
           <iframe
+            src={`https://www.youtube.com/embed/${id}`}
+            frameBorder='0'
+            title={video?.snippet?.title}
+            allowFullScreen
             width='100%'
             height='100%'
-            src={`https://www.youtube.com/embed/${id}`}
-            title={video?.snippet?.title}
-            frameborder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
           ></iframe>
         </div>
         {!loading ? (
@@ -52,6 +52,7 @@ const WatchScreen = () => {
         ) : (
           <h6>Loading...</h6>
         )}
+
         <Comments
           videoId={id}
           totalComments={video?.statistics?.commentCount}
@@ -60,7 +61,7 @@ const WatchScreen = () => {
       <Col lg={4}>
         {!loading ? (
           videos
-            ?.filter((video) => video.snippet) //some videos do not have the snippet. We check for those with the filter
+            ?.filter((video) => video.snippet)
             .map((video) => (
               <VideoHorizontal video={video} key={video.id.videoId} />
             ))

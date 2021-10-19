@@ -9,7 +9,7 @@ const LoginScreen = () => {
   const dispatch = useDispatch((state) => state.auth.accessToken)
 
   // READ DATA FROM REDUX STORE
-  const accessToken = useSelector
+  const accessToken = useSelector((state) => state.auth.accessToken)
 
   const handleLogin = () => {
     dispatch(login())
@@ -22,7 +22,7 @@ const LoginScreen = () => {
       //If the accessToken is not null, redirect the user to homepage
       history.push('/')
     }
-  }, [accessToken])
+  }, [accessToken, history])
 
   return (
     <div className='login'>

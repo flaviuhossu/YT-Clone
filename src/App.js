@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
       <Header handleToggleSidebar={handleToggleSidebar} />
       <div className='app__container'>
         <Sidebar sidebar={sidebar} handleToggleSidebar={handleToggleSidebar} />
-        <Container fluid className='app__main'>
+        <Container fluid className='app__main '>
           {children}
         </Container>
       </div>
@@ -40,50 +40,49 @@ const App = () => {
   const history = useHistory()
 
   useEffect(() => {
-    console.log('loading state:', loading)
-    console.log('access token:', accessToken)
     if (!loading && !accessToken) {
       history.push('/auth')
     }
   }, [accessToken, loading, history])
 
   return (
-    <>
-      <Switch>
-        <Route path='/' exact>
-          <Layout>
-            <HomeScreen></HomeScreen>
-          </Layout>
-        </Route>
-        <Route path='/auth' exact>
-          <LoginScreen></LoginScreen>
-        </Route>
-        <Route path='/search/:query'>
-          <Layout>
-            <SearchScreen />
-          </Layout>
-        </Route>
-        <Route path='/watch:id'>
-          <Layout>
-            <WatchScreen />
-          </Layout>
-        </Route>
-        <Route path='/feed/subscriptions'>
-          <Layout>
-            <Subscriptions />
-          </Layout>
-        </Route>
-        <Route path='/channel/:channelId'>
-          <Layout>
-            <ChannelScreen />
-          </Layout>
-        </Route>
-        <Route>
-          <Redirect to='/' />
-        </Route>
-      </Switch>
-    </>
+    <Switch>
+      <Route path='/' exact>
+        <Layout>
+          <HomeScreen />
+        </Layout>
+      </Route>
+
+      <Route path='/auth'>
+        <LoginScreen />
+      </Route>
+
+      <Route path='/search/:query'>
+        <Layout>
+          <SearchScreen />
+        </Layout>
+      </Route>
+      <Route path='/watch/:id'>
+        <Layout>
+          <WatchScreen />
+        </Layout>
+      </Route>
+
+      <Route path='/feed/subscriptions'>
+        <Layout>
+          <Subscriptions />
+        </Layout>
+      </Route>
+      <Route path='/channel/:channelId'>
+        <Layout>
+          <ChannelScreen />
+        </Layout>
+      </Route>
+
+      <Route>
+        <Redirect to='/' />
+      </Route>
+    </Switch>
   )
 }
-
 export default App

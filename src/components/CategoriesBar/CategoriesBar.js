@@ -32,8 +32,9 @@ const CategoriesBar = () => {
     setActiveElement(value)
     if (value === 'All') {
       dispatch(getPopularVideos())
+    } else {
+      dispatch(getVideosByCategory(value))
     }
-    dispatch(getVideosByCategory(value))
   }
 
   return (
