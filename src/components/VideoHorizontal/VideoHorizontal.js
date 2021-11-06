@@ -17,14 +17,14 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
       channelId,
       channelTitle,
       description,
-      videoTitle,
+      title,
       publishedAt,
       thumbnails: { medium },
       resourceId,
     },
   } = video
 
-  const [views, setViews] = useState(null)
+  const [views, setViews] = useState(0)
   const [duration, setDuration] = useState(null)
   const [channelIcon, setChannelIcon] = useState(null)
   const isVideo = !(id.kind === 'youtube#channel' || subScreen)
@@ -56,6 +56,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
           id: channelId,
         },
       })
+      console.log('ChannelId', channelId)
       setChannelIcon(items[0].snippet.thumbnails.default)
     }
     if (isVideo) get_channel_icon()
@@ -96,22 +97,15 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
           <span className='videoHorizontal__duration'>{_duration}</span>
         )}
       </Col>
-      {/* TODO: Refractor grid*/}
       <Col
         xs={6}
         md={searchScreen || subScreen ? 8 : 6}
         className='videoHorizontal__right p-0'
       >
-        <p className='videoHorizontal__title mb-1'>{videoTitle}</p>
+        <p className='videoHorizontal__title mb-1'>{title}</p>
         {isVideo && (
           <div className='videoHorizontal__details'>
-            <AiFillEye /> {numeral({ views }).format('0.a')} views •
-            {moment(publishedAt).fromNow()}
-          </div>
-        )}
-        {isVideo && (
-          <div className='videoHorizontal__details'>
-            <AiFillEye /> {numeral({ views }).format('0.a')} views •
+            <AiFillEye /> {numeral(views).format('0.a')} views •&nbsp;
             {moment(publishedAt).fromNow()}
           </div>
         )}

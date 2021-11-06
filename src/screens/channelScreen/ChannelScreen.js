@@ -12,6 +12,7 @@ import './_channelScreen.scss'
 const ChannelScreen = () => {
   const { channelId } = useParams()
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getVideosByChannel(channelId))
     dispatch(getChannelDetails(channelId))

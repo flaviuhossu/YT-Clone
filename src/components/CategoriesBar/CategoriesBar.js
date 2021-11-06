@@ -13,13 +13,12 @@ const keywords = [
   'React Native',
   'APIs',
   'Redux',
+  'Next JS',
   'Music',
+  'Pink Floyd',
   'Algorithm',
   'Guitar',
-  'Bengali Songs :))',
   'Coding',
-  'Cricket',
-  'Football',
   'Gatsby',
 ]
 

@@ -74,7 +74,6 @@ const Video = ({ video, channelScreen }) => {
 
   const handleVideoClick = () => {
     history.push(`/watch/${_videoId}`)
-    console.log(_videoId, 'FLAVIU')
   }
   return (
     <div className='video' onClick={handleVideoClick}>
@@ -85,7 +84,7 @@ const Video = ({ video, channelScreen }) => {
       <div className='video__title'>{title}</div>
       <div className='video__details'>
         <span>
-          <AiFillEye /> {numeral(views).format('0.a')} views •
+          <AiFillEye /> {numeral(views).format('0.a')} views •&nbsp;
         </span>
         <span>{moment(publishedAt).fromNow()}</span>
       </div>

@@ -11,6 +11,7 @@ const SearchScreen = () => {
   const { query } = useParams()
 
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getVideosBySearch(query))
   }, [query, dispatch])
