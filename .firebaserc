@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "you-tube-project-clone"
-  }
+    "default": "you-tube-project-clone",
+    "youtube": "you-tube-project-clone"
+  },
+  "targets": {}
 }
